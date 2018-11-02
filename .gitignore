@@ -1,0 +1,21 @@
+# Editor directories and files
+.DS_Store
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.project
+.settings
+.externalToolBuilders
+
+#dependencies
+node_modules
+
+#dist
+dist
+src/static/js
+
+#npm
+package-lock.json
