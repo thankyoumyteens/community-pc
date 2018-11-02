@@ -5,6 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 exports.entryList = {
   'index': './src/static/script/app/index/index.jsx',
+  'forum-index': './src/static/script/app//forum/forum-index/forum-index.jsx',
   'hello': './src/static/script/app/hello/hello.jsx'
 };
 
