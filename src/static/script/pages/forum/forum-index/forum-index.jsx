@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import css from './forum-index.css';
+import './forum-index.css';
+import Header from '../../../components/Header/Header.jsx';
 
 
 class ForumIndex extends React.Component {
@@ -11,10 +12,11 @@ class ForumIndex extends React.Component {
   render() {
     return (
       <div className="forum-index">
-
+        <Header/>
       </div>
     )
   }
 }
 
 ReactDOM.render(<ForumIndex/>, document.getElementById('root'));
+if (module.hot) module.hot.accept();

@@ -4,9 +4,9 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 exports.entryList = {
-  'index': './src/static/script/app/index/index.jsx',
-  'forum-index': './src/static/script/app//forum/forum-index/forum-index.jsx',
-  'hello': './src/static/script/app/hello/hello.jsx'
+  'index': './src/static/script/pages/index/index.jsx',
+  'forum-index': './src/static/script/pages/forum/forum-index/forum-index.jsx',
+  'hello': './src/static/script/pages/hello/hello.jsx'
 };
 
 exports.devEntry = function () {
@@ -38,7 +38,7 @@ exports.entry = function () {
 
 exports.devOutput = {
   filename: '[name].js',
-  path: path.resolve(__dirname, 'static/js/app'),
+  path: path.resolve(__dirname, 'static/js'),
   publicPath: '/static/js'
 };
 

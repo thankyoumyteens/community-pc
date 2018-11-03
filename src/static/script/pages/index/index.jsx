@@ -14,3 +14,4 @@ class Index extends React.Component {
 }
 
 ReactDOM.render(<Index text={'哈哈哈'}/>, document.getElementById('root'));
+if (module.hot) module.hot.accept();
