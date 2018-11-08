@@ -1,4 +1,4 @@
-var entry = require('./webpack.entry.js');
+const entry = require('./webpack.entry.js');
 
 module.exports = {
   entry: entry.entry(),

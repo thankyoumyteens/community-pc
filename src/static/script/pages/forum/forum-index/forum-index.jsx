@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './forum-index.css';
 import Header from '../../../components/Header/Header.jsx';
+import './forum-index.less';
 
 
 class ForumIndex extends React.Component {

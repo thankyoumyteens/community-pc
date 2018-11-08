@@ -1,4 +1,6 @@
 import React from 'react';
+import {Row, Col} from 'antd';
+import './Header.less';
 
 
 export default class Header extends React.Component {
@@ -9,7 +11,14 @@ export default class Header extends React.Component {
   render() {
     return (
       <div className="header">
-        header
+        <Row>
+          <Col span="20">
+            header
+          </Col>
+          <Col span="4">
+            user
+          </Col>
+        </Row>
       </div>
     )
   }
