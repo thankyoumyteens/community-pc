@@ -11,8 +11,15 @@ import axios from 'axios';
 export default {
   get(url, params) {
     return new Promise((resolve, reject) => {
-      axios.get(url, {params: params}).then(function (response) {
-        resolve(response);
+      let p;
+      if (params) {
+        p = axios.get(url, {params: params});
+      } else {
+        p = axios.get(url);
+      }
+
+      p.then(function (response) {
+        resolve(response.data);
       }).catch(function (error) {
         reject(error);
       });
@@ -20,8 +27,14 @@ export default {
   },
   post(url, params) {
     return new Promise((resolve, reject) => {
-      axios.post(url, params).then(function (response) {
-        resolve(response);
+      let p;
+      if (params) {
+        p = axios.post(url, params);
+      } else {
+        p = axios.post(url);
+      }
+      p.then(function (response) {
+        resolve(response.data);
       }).catch(function (error) {
         reject(error);
       });
