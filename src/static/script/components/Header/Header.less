@@ -3,14 +3,18 @@
 @fontColor: #fff;
 
 .header {
-  background-color: @color;
-  color: @fontColor;
-  width: 100%;
-  min-width: 600px;
-  height: @headerHeight;
-  overflow-x: hidden;
+  height: @headerHeight + 1rem;
   .header-row {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 600px;
+    background-color: @color;
+    color: @fontColor;
     height: @headerHeight;
+    overflow-x: hidden;
     .nav {
       height: @headerHeight;
       .logo {
@@ -19,16 +23,9 @@
         height: @headerHeight;
       }
       .nav-container {
-        list-style: none;
-        padding: 0;
         margin: 0 0 0 @headerHeight;
         height: @headerHeight;
         line-height: @headerHeight;
-        display: flex;
-        .nav-item {
-          display: inline-block;
-          flex: 1;
-        }
       }
     }
     .user {
@@ -46,15 +43,18 @@
         }
       }
       .user-container {
+        float: right;
         list-style: none;
         padding: 0;
-        margin: 0;
+        margin: 0 1rem 0 0;
         height: @headerHeight;
         line-height: @headerHeight;
-        display: flex;
         .user-item {
           display: inline-block;
-          flex: 1;
+          margin: 0 0.3rem;
+          a:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

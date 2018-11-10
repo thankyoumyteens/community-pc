@@ -1,4 +1,12 @@
 export const url = {
+  // 导航
+  home: '/home/index',
+  forum: '/forum/index',
+  cloud: '/cloud/index',
+  news: '/news/index',
+  wiki: '/wiki/index',
+  about: '/about/index',
+  // 用户
   userCenter: '/user/index',
   userAccount: '/user/account',
   userFavorite: '/user/favorite',

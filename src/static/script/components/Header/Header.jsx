@@ -35,13 +35,15 @@ export default class Header extends React.Component {
       });
     } else {
       ajaxUtil.post(url.userStatus).then(resp => {
-        if (resp.status === 0) {
+        if (resp.status === 0 && resp.data.isLogin) {
+          // 已登陆
           localStorage.setItem('userInfo', JSON.stringify(resp.data.userInfo));
           this.setState({
             isLogin: resp.data.isLogin,
             userInfo: resp.data.userInfo
           });
         } else {
+          // 未登录
           this.setState({
             isLogin: false,
           });
@@ -57,45 +59,44 @@ export default class Header extends React.Component {
       <div className="header">
         <Row className="header-row">
           <Col span="20" className="nav">
+            {/*todo logo*/}
             <div className="logo"><img src="" alt=""/></div>
-            <ul className="nav-container">
-              <li className="nav-item">首页</li>
-              <li className="nav-item">交流区</li>
-              <li className="nav-item">资源区</li>
-              <li className="nav-item">热门消息</li>
-              <li className="nav-item">科普区</li>
-              <li className="nav-item">关于我们</li>
-            </ul>
+            <Menu mode="horizontal" theme="dark" className="nav-container">
+              <Menu.Item key="nav0"><a href={url.home}>首页</a></Menu.Item>
+              <Menu.Item key="nav1"><a href={url.forum}>交流区</a></Menu.Item>
+              <Menu.Item key="nav2"><a href={url.cloud}>资源区</a></Menu.Item>
+              <Menu.Item key="nav3"><a href={url.news}>热门消息</a></Menu.Item>
+              <Menu.Item key="nav4"><a href={url.wiki}>科普区</a></Menu.Item>
+              <Menu.Item key="nav5"><a href={url.about}>关于我们</a></Menu.Item>
+            </Menu>
           </Col>
           <Col span="4" className="user">
-            {
-              (() => {
-                if (this.state.isLogin) {
-                  return (
-                    <Menu mode="horizontal" theme="dark">
-                      <Menu.Item key="0" className="user-avatar">
-                        <a href={url.userCenter}>
-                          <img src={this.state.avatar} alt=""/>
-                        </a>
-                      </Menu.Item>
-                      <SubMenu title={<Icon type="down"/>}>
-                        <Menu.Item key="1"><a href={url.userAccount}>账户设置</a></Menu.Item>
-                        <Menu.Item key="2"><a href={url.userFavorite}>我的收藏</a></Menu.Item>
-                        <Menu.Item key="3"><a href={url.userHistory}>浏览历史</a></Menu.Item>
-                        <Menu.Item key="4"><a href={url.userLogout}>退出登录</a></Menu.Item>
-                      </SubMenu>
-                    </Menu>
-                  )
-                } else {
-                  return (
-                    <ul className="user-container">
-                      <li className="user-item"><a href={url.userLogin}>登陆</a></li>
-                      <li className="user-item"><a href={url.userRegister}>注册</a></li>
-                    </ul>
-                  )
-                }
-              })()
-            }
+            {(() => {
+              if (this.state.isLogin) {
+                return (
+                  <Menu mode="horizontal" theme="dark">
+                    <Menu.Item key="0" className="user-avatar">
+                      <a href={url.userCenter}>
+                        <img src={this.state.avatar} alt={this.state.userInfo.username}/>
+                      </a>
+                    </Menu.Item>
+                    <SubMenu title={<Icon type="down"/>}>
+                      <Menu.Item key="1"><a href={url.userAccount}>账户设置</a></Menu.Item>
+                      <Menu.Item key="2"><a href={url.userFavorite}>我的收藏</a></Menu.Item>
+                      <Menu.Item key="3"><a href={url.userHistory}>浏览历史</a></Menu.Item>
+                      <Menu.Item key="4"><a href={url.userLogout}>退出登录</a></Menu.Item>
+                    </SubMenu>
+                  </Menu>
+                )
+              } else {
+                return (
+                  <ul className="user-container">
+                    <li className="user-item"><a href={url.userLogin}>登陆</a></li>
+                    <li className="user-item"><a href={url.userRegister}>注册</a></li>
+                  </ul>
+                )
+              }
+            })()}
           </Col>
         </Row>
       </div>

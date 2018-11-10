@@ -5,7 +5,7 @@ module.exports = function (app) {
     response.send({
       status: 0,
       data: {
-        isLogin: true,
+        isLogin: false,
         userInfo: {
           userId: 1,
           username: 'hehehe',
