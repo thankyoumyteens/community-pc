@@ -1,3 +1,6 @@
+/**
+ * http请求地址
+ */
 export const url = {
   // 导航
   home: '/home/index',

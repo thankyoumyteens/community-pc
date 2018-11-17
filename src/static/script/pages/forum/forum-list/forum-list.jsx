@@ -1,52 +1,67 @@
 import React from 'react';
-import {List, Icon} from 'antd';
+import {Alert, Spin, Icon} from 'antd';
 import './forum-list.less';
+import ListView from '../../../components/ListView/ListView.jsx';
+import {Status} from '../../../common/Constants.js';
 
 
 export default class ForumList extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      isLoading: false,
+      listData: null,
+      listDataStatus: Status.SUCCESS,
+    };
+  }
+
+  componentDidMount() {
+    this.getListData();
+  }
+
+  /**
+   * 获取文章列表
+   */
+  getListData() {
+    this.setState({
+      isLoading: true
+    });
+    // todo ajax
+    const listData = [];
+    for (let i = 0; i < 20; i++) {
+      listData.push("item" + i);
+    }
+    setTimeout(() => {
+      this.setState({
+        isLoading: false,
+        listDataStatus: Status.SUCCESS,
+        listData: listData
+      });
+    }, 3000);
   }
 
   render() {
-    const listData = [];
-    for (let i = 0; i < 23; i++) {
-      listData.push({
-        href: '#',
-        title: `标题 ${i}`,
-        description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-        content: 'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-      });
-    }
-
-    const IconText = ({type, text}) => (<span><Icon type={type} style={{marginRight: 8}}/>{text}</span>);
+    const antIcon = <Icon type="loading" style={{fontSize: 24}} spin/>;
 
     return (
       <div className="forum-list">
-        <List
-          itemLayout="vertical"
-          size="large"
-          pagination={{
-            onChange: (page) => {
-              console.log(page);
-            },
-            pageSize: 3,
-          }}
-          dataSource={listData}
-          renderItem={item => (
-            <List.Item
-              key={item.title}
-              actions={[<IconText type="star-o" text="156"/>, <IconText type="like-o" text="156"/>, <IconText type="message" text="2"/>]}
-              extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"/>}
-            >
-              <List.Item.Meta
-                title={<a href={item.href}>{item.title}</a>}
-                description={item.description}
+        {(() => {
+          if (this.state.isLoading) {
+            return <Spin size="large" indicator={antIcon}/>
+          } else {
+            if (this.state.listDataStatus === Status.SUCCESS) {
+              return <ListView list={this.state.listData}/>
+            } else if (this.state.listDataStatus === Status.ERROR) {
+              return <Alert
+                message="出错啦"
+                description="加载失败, 请重试"
+                type="error"
+                showIcon
               />
-              {item.content}
-            </List.Item>
-          )}
-        />
+            }
+          }
+        })()}
       </div>
     )
   }
