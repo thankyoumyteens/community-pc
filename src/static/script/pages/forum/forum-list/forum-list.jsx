@@ -3,6 +3,8 @@ import {Alert, Spin, Icon} from 'antd';
 import './forum-list.less';
 import ListView from '../../../components/ListView/ListView.jsx';
 import {Status} from '../../../common/Constants.js';
+import ajaxUtil from '../../../../util/ajaxUtil.js';
+import {url} from '../../../properties.js';
 
 
 export default class ForumList extends React.Component {
@@ -13,6 +15,9 @@ export default class ForumList extends React.Component {
       isLoading: false,
       listData: null,
       listDataStatus: Status.SUCCESS,
+      pageIndex: 1,
+      pageSize: 10,
+      pageCount: 1,
     };
   }
 
@@ -27,18 +32,33 @@ export default class ForumList extends React.Component {
     this.setState({
       isLoading: true
     });
-    // todo ajax
-    const listData = [];
-    for (let i = 0; i < 20; i++) {
-      listData.push("item" + i);
-    }
-    setTimeout(() => {
+    ajaxUtil.get(url.forumList, {
+      pageIndex: this.state.pageIndex,
+      pageSize: this.state.pageSize
+    }).then(resp => {
+      if (resp.status === Status.SUCCESS) {
+        let data = resp.data;
+        this.setState({
+          isLoading: false,
+          listDataStatus: Status.SUCCESS,
+          listData: data.list,
+          pageIndex: data.pageIndex,
+          pageCount: data.pageCount
+        });
+      } else {
+        console.log("get forum list status error: ", resp.msg);
+        this.setState({
+          isLoading: false,
+          listDataStatus: Status.ERROR
+        });
+      }
+    }).catch(error => {
+      console.error("get forum list error: ", error);
       this.setState({
         isLoading: false,
-        listDataStatus: Status.SUCCESS,
-        listData: listData
+        listDataStatus: Status.ERROR
       });
-    }, 3000);
+    });
   }
 
   render() {

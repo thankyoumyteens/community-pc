@@ -14,8 +14,12 @@ export const url = {
   userAccount: '/user/account',
   userFavorite: '/user/favorite',
   userHistory: '/user/history',
-  userLogout: '/user/logout',
   userLogin: '/user/login',
-  userStatus: '/user/status',
   userRegister: '/user/register',
+  userLogout: '/user/logout',
+  userStatus: '/user/status',
+  userDoLogin: '/user/dol',
+  userDoRegister: '/user/dor',
+  // 论坛
+  forumList: '/forum/list',
 };

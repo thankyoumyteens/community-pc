@@ -10,7 +10,6 @@ export default class ListItem extends React.Component {
     return (
       <div>
         {this.props.item}
-        {this.props.index}
       </div>
     )
   }
