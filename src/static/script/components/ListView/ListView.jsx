@@ -22,6 +22,12 @@ export default class ListView extends React.Component {
             </div>
           }
         })()}
+        {(() => {
+          if (this.props.list && this.props.list.length > 0) {
+            // todo
+            return <div>page</div>
+          }
+        })()}
       </div>
     )
   }

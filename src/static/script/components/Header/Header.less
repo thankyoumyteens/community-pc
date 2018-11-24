@@ -1,6 +1,4 @@
-@headerHeight: 3rem;
-@color: #001529;
-@fontColor: #fff;
+@import "../../common/constants.less";
 
 .header {
   height: @headerHeight + 1rem;
@@ -11,11 +9,11 @@
     left: 0;
     width: 100%;
     min-width: 600px;
-    background-color: @color;
-    color: @fontColor;
+    background-color: @headerBackgroundColor;
+    color: @headerFontColor;
     height: @headerHeight;
     overflow-x: hidden;
-    box-shadow: 0 1px 5px 0 rgba(0,0,0,.12), 0 0 5px 0 rgba(0,0,0,.04);
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, .12), 0 0 5px 0 rgba(0, 0, 0, .04);
     .nav {
       height: @headerHeight;
       .logo {

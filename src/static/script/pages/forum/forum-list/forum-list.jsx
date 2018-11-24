@@ -71,7 +71,11 @@ export default class ForumList extends React.Component {
             return <Spin size="large" indicator={antIcon}/>
           } else {
             if (this.state.listDataStatus === Status.SUCCESS) {
-              return <ListView list={this.state.listData}/>
+              return <ListView
+                list={this.state.listData}
+                pageIndex={this.state.pageIndex}
+                pageCount={this.state.pageCount}
+              />
             } else if (this.state.listDataStatus === Status.ERROR) {
               return <Alert
                 message="出错啦"
